@@ -13,8 +13,8 @@ public class MainCaller
         rm.ClearPreviousLocations(apiHandle);
 
         Location[] locations = new Location[2];
-        locations[0] = new Location("Kansas City", "Wyandotte County", "KS", 0,0 ,  "", 39.11417100f, -94.62745700f);
-        locations[1] = new Location("Seattle", "King County", "WA", 0,0 ,  "", 47.60621000f, -122.33207100f);
+        locations[0] = new Location("Kansas City", "", "KS", 0,0 ,  "", 39.11417100f, -94.62745700f);
+        locations[1] = new Location("Seattle", "", "WA", 0,0 ,  "", 47.60621000f, -122.33207100f);
 
         for (int i = 0; i < locations.length; i++)
         {

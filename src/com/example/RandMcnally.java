@@ -16,7 +16,7 @@ public class RandMcnally
         {
             arg[i] = new String("");
         }
-        arg[6] = -1;
+        arg[6] = new Integer(-1);
 
         int err = this.irApi.irSAInitialize(arg);
         int apiHandle = ((Integer)arg[6]).intValue();
@@ -34,7 +34,7 @@ public class RandMcnally
     public void ClearPreviousLocations(int apiHandle)
     {
         Object[] arg = new Object[1];
-        arg[0] = apiHandle;
+        arg[0] = new Integer(apiHandle);
         int err = this.irApi.irClearRouteLocations(arg);
         this.LogStatus(arg, err, "ClearPreviousLocations");
     }
@@ -42,15 +42,15 @@ public class RandMcnally
     public void ValidateLocation(Location loc, int apiHandle)
     {
         Object[] arg = new Object[8];
-        arg[0] = apiHandle;
+        arg[0] = new Integer(apiHandle);
         arg[1] = new String(loc.City);
         // arg[1] = new String(String.valueOf(loc.Latitude) + " " + String.valueOf(loc.Longitude));
         arg[2] = new String(loc.County);
         arg[3] = new String(loc.State);
         arg[4] = new String("MI");
-        arg[5] = 0;
-        arg[6] = 0;
-        arg[7] = -1;
+        arg[5] = new Integer(0);
+        arg[6] = new Integer(0);
+        arg[7] = new Integer(-1);
 
         int err = this.irApi.irValidateListCount(arg);
         this.LogStatus(arg, err, "ValidateLocation");
@@ -58,7 +58,7 @@ public class RandMcnally
         int iClosestMatch = ((Integer)arg[7]).intValue();
 
         arg = new Object[9];
-        arg[0] = apiHandle;
+        arg[0] = new Integer(apiHandle);
         for (int i = 2; i < 9; i++)
         {
             arg[i] = new String("");
@@ -66,7 +66,7 @@ public class RandMcnally
 
         for (int i = 0; i < iNumRec; i++)
         {
-            arg[1] = i + 1;
+            arg[1] = new Integer(i + 1);
             err = this.irApi.irValidateListRecord(arg);
             this.LogStatus(arg, err, "ValidateLocation.ValidateListRecord" + i);
 
@@ -80,7 +80,7 @@ public class RandMcnally
     public void AddLocation(Location location, int apiHandle)
     {
         Object[] arg = new Object[4];
-        arg[0] = apiHandle;
+        arg[0] = new Integer(apiHandle);
         arg[1] = location.City;
         arg[2] = location.County;
         arg[3] = location.State;
@@ -92,7 +92,7 @@ public class RandMcnally
     public void DoRoute(int apiHandle)
     {
         Object[] arg = new Object[2];
-        arg[0] = apiHandle;
+        arg[0] = new Integer(apiHandle);
         arg[1] = new String("PR"); //sType
 
         int err = this.irApi.irRoute(arg);
@@ -102,19 +102,19 @@ public class RandMcnally
     public void GetTotalMileage(int apiHandle)
     {
         Object[] arg = new Object[2];
-        arg[0] = apiHandle;
-        arg[1] = 0;
+        arg[0] = new Integer(apiHandle);
+        arg[1] = new Integer(0);
 
         int err = this.irApi.irGetTotalMileageRecords(arg);
         this.LogStatus(arg, err, "GetTotalMileageRecords");
 
         int iNumRecords = ((Integer)arg[1]).intValue();
         arg = new Object[16];
-        arg[0] = apiHandle;
+        arg[0] = new Integer(apiHandle);
 
         for (int i = 0; i < iNumRecords; i++)
         {
-            arg[1] = i + 1;
+            arg[1] = new Integer(i + 1);
             for (int j = 2; j < 16; j++)
             {
                 if(j != 11)
@@ -123,7 +123,7 @@ public class RandMcnally
                 }
                 else
                 {
-                    arg[j] = 0.0f;
+                    arg[j] = new Float(0.0f);
                 }
             }
 
